@@ -19,7 +19,17 @@ createApp({
                 this.getMailFromApi();
             }
         },
-
+        // Chiedo al api la richiesta
+        getMailFromApi(){
+            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+            .then((response) => {
+                const serverMail = response.data;
+                //push mail trovata in Api nell'array empty
+                this.mails.push(serverMail.response);              
+            });
+        },
     },
-    
+    mounted() {
+        this.get10Mails(); 
+    },
 }).mount('#app');
